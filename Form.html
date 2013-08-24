@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+ <!-- Arthor: Clifton Abraham, VFW 1308 project 1 form (add item)-->
+ <html>
+  <head>
+   <meta charset="utef-8">
+   <meta name="description" content="all the things I need to do for the day" />
+   <meta keywords="Vaccum, Living room,  gas up car, go to store, Sweep Kitchen" />
+   <meta name="viewport" content="user-scalable=no, width=device-width" />
+   <meta name="robots" content="index, follow" />
+     <link href="CSS/styleform.css" type="css/text" rel="stylesheet" />
+   <title>My Task's</title>
+
+
+     </head>  
+    <body>
+     <h1>My Tasks</h1>
+     <nav>
+      <a href="#" id="clear">Clear Stored Data</a> 
+      <a href= "#" id="displayLink">Display Data</a> 
+      <a href= "form.html" id="addNew" style= "display:none;">Add New Item</a> 
+     </nav>
+     <form action="#" method="post" id="myForm" >
+       <fieldset>
+        <legend>My Info</legend>
+        <ul id= "errors"></ul> 
+        <ul id="information">
+            <li id='select'><label for='group'>*Add To Group:</label><br /></li>
+            <li><label for= "fname"> First Name:</label><input type="text" id="fname" /></li>
+            <li><label for= "lname"> Last  Name:</label><input type="text" id="lname" /></li>
+            <li><label for="pword">  Password:</label><input type="password" id="pword" /></li>
+            <li><label for="cpword">Confirm Password[Disabled]:</label><input type="password" id="cpword" disabled/></li>
+            <li><label for="email">  Email:</label><input type="text" id="email"placeholder=email@example.com /></li>
+        </ul>
+       </fieldset>
+        <fieldset>
+         <legend> My Tasks</legend>
+          <ul>
+            <li>
+                Check the Task's you want to complete:
+                <ul><!-- see if Radio button goes with in this ul, same for group-->
+                    <li><input type="checkbox" value="Vacuum" id="vaccum" name="chor" /><label for="vaccum">Vacuum</label></li>
+                    <li><input type="checkbox" value="Sweep" id="sweep" name="chor" /><label for="sweep">Sweep </label></li>
+                    <li><input type="checkbox" value="Wash Dishes" id="wDishes" name="chor" /><label for="wDishes">Wash Dishes</label></li>
+                    <li><input type="checkbox" value="Go to Store" id="store" name="chor" /><label for="Store">Go to Store</label></li>
+                    <li><input type= "checkbox" value="Mop" id= "mop" name="chor"/><label for="Mop">Mop</label></li>
+                    <li><label for="comments"> Any additional Tasks?:</label><textarea id="comments"placeholder=Type.></textarea></li>
+                </ul>
+            </li>
+          </ul>
+          <li>
+           Do you do the Selected Task everyday?:
+           <ul>
+             <li><input type='radio' value= 'yes' id='yes' name='answer'/><label for= 'yes'>Yes</label></li>
+             <li><input type='radio' value= 'no' id=no name= 'answer'/><label for='no'>No</label></li>
+            </li>
+           </ul>
+          <li>
+           <label for='location'>Where Are you Cleaning</label>
+           <select id='location'>
+            <optgroup label='What Location?'>
+             <option value='LivingRoom'>LivingRoom</option>
+             <option value='Kitchen'>Kitchen</option>
+             <option value= 'BathRoom'>BathRoom</option>
+             <option value='BedRoom'>BedRoom</option>
+             <option value= 'Office'>Office</option>
+             <option value= 'Interior'>Interior</option>
+            </optgroup>
+           </select>
+          </li>
+       </fieldset>
+         <input type="submit" value="Completed Tasks" id="complete" />
+         
+        </form>
+               <!-- JS Links-->
+       <!--  <script src= "JS/json.js" type= "text/javascript"></script>-->
+         <script src="JS/main.js"  type="text/javascript"></script>
+    </body>
+    </html>
