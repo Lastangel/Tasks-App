@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- Project 1, Arthor: Clifton Abraham, Date: 07/8/2013, VFW 1307-->
+<!-- Document html-->
+<html>
+<!-- Document head-->
+<head>
+ <h1>My To Do List</h1>
+<!-- Document charset-->
+    <meta charset= "UTF-8">
+    <!-- description-->
+    <meta name="descrption" content= "To do list, that gather's all my Tasks for the day."/>
+    <!-- mobile browser ready-->
+    <meta name="viewport" content= "user-scalable=no, width=device-width" />
+    <!-- Css Link for document-->
+    <link href="CSS/style.css" type="css/text" rel="stylesheet" />
+  
+<!-- Document Title-->
+<title>My To Do List</title>
+<!--Document body -->
+</head>
+    <body>
+     <p>This web App is for recording all the things that need to be done on a day to day basis. Don't ever forget a Tasks again!!</p>
+       
+    </body>
+      <a href="Form.html">Set tasks</a>
+</html>
