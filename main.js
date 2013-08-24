@@ -2,7 +2,7 @@
 // Project 1
 // 08/10/12, VFW, 1308
 
-window.addEventListener("DOMContentLoaded",function( ){
+window.addEventListener("DOMContentLoaded",function(){
   // getElementById shortcut
   function $(x){
     var theElement = document.getElementById(x)
@@ -83,19 +83,19 @@ function toggleControls(n){
  function saveData(){
   getRadio();
   getCheckBoxValue();
-  var id                = Math.floor(Math.random()*1000001);
+  var id                = Math.floor(Math.random() * 10000001);
   var item              ={};
-      item.group        =["Group", $("groups").value];
-      item.fname        =["First Name", $("fname").value];
-      item.lname        =["Last Name", $("lname").value];
-      item.email        =["Email:", $("email").value];
+      item.group        =["Group", $("groups").value ];
+      item.fname        =["First Name", $("fname").value ];
+      item.lname        =["Last Name", $("lname").value ];
+      item.email        =["Email:", $("email").value ];
       item.everyday     =["EveryDay:", answerValue ];
       item.vaccum       = ["Vaccum:", vaccum];
       item.sweep        = ["Sweep:", sweep];
-      item.wDishes      = ["Wash Dishes:", wDishes];
+      item.wDishes      = ["Wash Dishes:", wDishes ];
       item.store        = ["Store:", store];
       item.mop          = ["Mop:", mop];
-      item.comments     =["Comments:", $("comments").value];
+      item.comments     =["Comments:", $("comments").value ];
       localStorage.setItem( id , JSON.stringify(item)); 
     alert("Tasks Saved");
  }
@@ -104,23 +104,23 @@ function toggleControls(n){
  if(localStorage.length === 0){
   alert("No Data In Local Storage.")
  }
-    var makeDiv = document.createElement('div');
-    makeDiv.setAttribute('id' , 'items');
-    var makeList = document.createElement('ul');
+    var makeDiv = document.createElement("div");
+    makeDiv.setAttribute("id" , "items");
+    var makeList = document.createElement("ul");
     makeDiv.appendChild(makeList);
     document.body.appendChild(makeDiv);
     for(var i=0, len=localStorage.length; i<len; i++){
-      var makeli = document.createElement('li');
+      var makeli = document.createElement("li");
       makeList.appendChild(makeli);
       var key = localStorage.key(i);
       var value = localStorage.getItem(key);
       var obj = JSON.parse(value);
-      var makeSubList = document.createElement('ul');
+      var makeSubList = document.createElement("ul");
       makeli.appendChild(makeSubList);
       for(var n in obj){
-        var makeSubli = document.createElement('li');
+        var makeSubli = document.createElement("li");
         makeSubList.appendChild(makeSubli);
-        var optSubText = obj[n][0] + " "  +obj[n][1];
+        var optSubText = obj[n] [0]+ " "  + obj[n] [1];
         makeSubli.innerHTML = optSubText;
       }
       
@@ -144,7 +144,8 @@ function toggleControls(n){
   var areaGroup = ["--Choose A Area--", "Home",  "Work", "Car"];
   
      makeGroups();
-     saveData();
+    // saveData();
+     var 
      answerValue,
       save = $('complete'),
      clearLink = $('clear');
@@ -156,7 +157,7 @@ function toggleControls(n){
  
   displayLink = $('displayLink');
   displayLink.addEventListener("click" ,showData);
-  save.addEventListener("click", "saveData");
+  save.addEventListener("click", saveData);
   clearLink.addEventListener("click", clearStorage);
   
   
