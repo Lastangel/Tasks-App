@@ -83,13 +83,15 @@ function toggleControls(n){
  function saveData(){
   getRadio();
   getCheckBoxValue();
-  var id                = Math.floor(Math.random() * 10000001);
+  var id                = Math.floor(Math.random() * 1000001);
   var item              ={};
       item.group        =["Group", $("groups").value ];
       item.fname        =["First Name", $("fname").value ];
       item.lname        =["Last Name", $("lname").value ];
+      item.pword        =["Password:", $("pword").value];
       item.email        =["Email:", $("email").value ];
       item.everyday     =["EveryDay:", answerValue ];
+      item.location     =["Location:" , $('location').value];
       item.vaccum       = ["Vaccum:", vaccum];
       item.sweep        = ["Sweep:", sweep];
       item.wDishes      = ["Wash Dishes:", wDishes ];
@@ -100,7 +102,7 @@ function toggleControls(n){
     alert("Tasks Saved");
  }
   function showData (){
-    toggleControls('on');
+    toggleControls("on");
  if(localStorage.length === 0){
   alert("No Data In Local Storage.")
  }
@@ -111,6 +113,7 @@ function toggleControls(n){
     document.body.appendChild(makeDiv);
     for(var i=0, len=localStorage.length; i<len; i++){
       var makeli = document.createElement("li");
+      var linksLi = document.createElement("li");
       makeList.appendChild(makeli);
       var key = localStorage.key(i);
       var value = localStorage.getItem(key);
@@ -122,11 +125,73 @@ function toggleControls(n){
         makeSubList.appendChild(makeSubli);
         var optSubText = obj[n] [0]+ " "  + obj[n] [1];
         makeSubli.innerHTML = optSubText;
+        makeSubList.appendChild(linksLi);
       }
-      
+       makeItemsLinks(localStorage.key(i), linksLi);
     }
   }
-
+    // edit and delete Link function
+    function makeItemsLinks(key, linksLi){
+      var editLink = document.createElement("a");
+          editLink.href = "#"
+          editLink.key = key;
+      var editText = "Edit Task";
+          editLink.addEventListener("click", editTask); 
+          editLink.innerHTML = editText;
+      linksLi.appendChild(editLink);
+      
+      var breakTag = document.createElement("br");
+      linksLi.appendChild(breakTag);
+      
+      
+      var deleteLink = document.createElement("a");
+          deleteLink.href = "#";
+          deleteLink.key = key;
+      var deleteText = "Delete Task";
+         // deleteLink.addEventListener("click", deleteTask); future function
+          deleteLink.innerHTML = deleteText
+      linksLi.appendChild(deleteLink);
+      
+      
+      
+    } // end of edit/delete link function
+    // editTask function
+    function editTask(){
+      var value = localStorage.getItem(this.key);
+      var item = JSON.parse(value);
+      
+      toggleControls("off");
+      
+      $("groups").value = item.group[1];
+      $("fname").value = item.fname[1];
+      $("lname").value = item.lname[1];
+      $("pword").value = item.pword[1];
+      $("email").value = item.email[1];
+      $("location").value = item.location[1];
+      var radios = document.forms[0].everyday;
+      for(var i=0, j=radios.length;i<j; i++){
+        if(radios[i].value == "yes" && item.everyday[1] == "yes"){
+          radios[i].setAttribute("checked", "checked");
+        }else if(radios[i].value == "no" && item.everyday[1] == "no"){
+          radios[i].setAttribute("checked", "checked");
+        }
+      }
+         // make check boxes watch rest of video thats up
+    if(item.vaccum[1] == "Vacuum"){
+      $('vaccum').setAttribute("checked", "checked");
+    }else if(item.sweep[1] == "Sweep"){
+      $('sweep').setAttribute("checked", "checked");
+    } else if(item.wDishes[1] == "Wash Dishes"){
+      $('wDishes').setAttribute("checked", "checked");
+    } else if(item.store[1] == "Go to Store"){
+      $('store').setAttribute("checked", "checked");
+    }else if(item.mop[1] == "Mop"){
+      $('mop').setAttribute("checked", "checked");
+    }
+    $('comments').value = item.comments[1];
+ } // end of editTask function
+    
+  
       clearStorage = function(){
      if(localStorage.length === 0){
         alert("There is no Data to Clear")
@@ -148,7 +213,8 @@ function toggleControls(n){
      var 
      answerValue,
       save = $('complete'),
-     clearLink = $('clear');
+     clearLink = $('clear'),
+     radios;
      
   
  
