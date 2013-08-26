@@ -1,6 +1,6 @@
 // Clifton Abraham
 // Project 1
-// 08/10/12, VFW, 1308
+// 08/26/12, VFW, 1308
 
 window.addEventListener("DOMContentLoaded",function(){
   // getElementById shortcut
@@ -108,7 +108,8 @@ function toggleControls(n){
   function showData (){
     toggleControls("on");
  if(localStorage.length === 0){
-  alert("No Data In Local Storage.")
+  alert("No Data In Local Storage, Defualt data was added.");
+  autoFill();
  }
     var makeDiv = document.createElement("div");
     makeDiv.setAttribute("id" , "items");
@@ -167,11 +168,11 @@ function toggleControls(n){
       
       toggleControls("off");
       
-      $("groups").value = item.group[1];
-      $("fname").value = item.fname[1];
-      $("lname").value = item.lname[1];
-      $("pword").value = item.pword[1];
-      $("email").value = item.email[1];
+      $("groups").value = item.groups[1];
+      $("fname").value  = item.fname[1];
+      $("lname").value  = item.lname[1];
+      $("pword").value  = item.pword[1];
+      $("email").value  = item.email[1];
       $("location").value = item.location[1];
       var radios = document.forms[0].everyday;
       for(var i=0, j=radios.length;i<j; i++){
@@ -280,6 +281,15 @@ function toggleControls(n){
   var clearData = $("clear");
   clearData.addEventListener("click", clearStorage);
   
+  // JSON Data function 
+  function autoFill(){
+    for(var n in json){
+      var id      = Math.floor(Math.random() * 1000000001);
+      localStorage.setItem(id, JSON.stringify(json[n]))
+    }
+  }
+  
+  
   // Varibles
   var areaGroup = ["--Choose A Area--", "Home",  "Work", "Car"];
   
@@ -290,7 +300,10 @@ function toggleControls(n){
       save = $('complete'),
      clearLink = $('clear'),
      radios,
-     errMsg = $('errors')
+     errMsg = $('errors'),
+    
+     
+     
      
   
  
