@@ -80,10 +80,14 @@ function toggleControls(n){
     }
   }
  
- function saveData(){
+ function saveData(key){
+   if(!!key){
+   var id                = Math.floor(Math.random() * 1000000001);
+   }else{
+    id = key;
+   }
   getRadio();
   getCheckBoxValue();
-  var id                = Math.floor(Math.random() * 1000001);
   var item              ={};
       item.group        =["Group", $("groups").value ];
       item.fname        =["First Name", $("fname").value ];
@@ -111,6 +115,7 @@ function toggleControls(n){
     var makeList = document.createElement("ul");
     makeDiv.appendChild(makeList);
     document.body.appendChild(makeDiv);
+    $('items').style.display = "block";
     for(var i=0, len=localStorage.length; i<len; i++){
       var makeli = document.createElement("li");
       var linksLi = document.createElement("li");
@@ -148,7 +153,7 @@ function toggleControls(n){
           deleteLink.href = "#";
           deleteLink.key = key;
       var deleteText = "Delete Task";
-         // deleteLink.addEventListener("click", deleteTask); future function
+          deleteLink.addEventListener("click", deleteTask);
           deleteLink.innerHTML = deleteText
       linksLi.appendChild(deleteLink);
       
@@ -189,8 +194,78 @@ function toggleControls(n){
       $('mop').setAttribute("checked", "checked");
     }
     $('comments').value = item.comments[1];
+    // remove listener
+    save.removeEventListener("click", saveData);
+    // add edit Task button
+      $("complete").value = "Edit Task";
+  var editComplete = $("complete");
+  editComplete.addEventListener("click", validate); // validate function the next video to see 
+  editComplete.key = this.key;
  } // end of editTask function
-    
+
+  // delete Task function
+   function deleteTask(){
+    var ask = confirm("Are you sure you want to delete Task?");
+    if(ask){
+      localStorage.removeItem(this.key);
+      window.location.reload();
+    }else{
+      alert("Task was NOT Deleted");
+    }
+   } // end of delete function
+ 
+   // validate function
+   function validate(e){
+     var getGroup   = $("groups");
+     var getFname   = $("fname");
+     var getLname   = $("lname");
+     var getEmail   = $("email");
+     
+     errMsg.innerHTML = " ";
+      getGroup.style.border = "1px solid black";
+      getFname.style.border = "1px solid black";
+      getLname.style.border = "1px solid black";
+      getEmail.style.border = "1px solid black";
+      
+     var messageAry = [ ];
+   
+    if(getGroup.value === "--Choose A Area--"){
+      var groupError = "Please choose a Group.";
+      getGroup.style.border = "1px solid red";
+      messageAry.push(groupError);
+      
+      if(getFname.value === ""){
+        var fNameError = "Please enter First name"
+        getFname.style.border = "1px solid red";
+        messageAry.push(fNameError);
+      }
+    } if(getLname.value === ""){
+      var lNameError = "Please enter Last name"
+      getLname.style.border = "1px solid red";
+      messageAry.push(lNameError);
+    } 
+   
+    // email validate
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!(re.exec(getEmail.value))){
+      var emailError = "please enter a valid Email address.";
+      getEmail.style.border = "1px solid red";
+      messageAry.push(emailError);
+    }
+    if(messageAry.length >= 1){
+      for(var i=0, j=messageAry.length; i<j; i++){
+          var txt = document.createElement('li');
+          txt.innerHTML = messageAry[i];
+          errMsg.appendChild(txt);
+      }
+         e.preventDefault();
+    return false;
+    } else{
+     saveData(this.key);
+      }
+  
+
+ } // emd of validate function
   
       clearStorage = function(){
      if(localStorage.length === 0){
@@ -214,7 +289,8 @@ function toggleControls(n){
      answerValue,
       save = $('complete'),
      clearLink = $('clear'),
-     radios;
+     radios,
+     errMsg = $('errors')
      
   
  
@@ -232,4 +308,4 @@ function toggleControls(n){
   
   
   
-});
+}); 
