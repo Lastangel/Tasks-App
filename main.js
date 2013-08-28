@@ -105,7 +105,7 @@ function toggleControls(n){
       localStorage.setItem( id , JSON.stringify(item)); 
     alert("Tasks Saved");
  }
-  function showData (){
+  function showData (item){
     toggleControls("on");
  if(localStorage.length === 0){
   alert("No Data In Local Storage, Defualt data was added.");
@@ -126,7 +126,8 @@ function toggleControls(n){
       var obj = JSON.parse(value);
       var makeSubList = document.createElement("ul");
       makeli.appendChild(makeSubList);
-      for(var n in obj){
+      getImage(areaGroup[1] , makeSubList); 
+        for(var n in obj){
         var makeSubli = document.createElement("li");
         makeSubList.appendChild(makeSubli);
         var optSubText = obj[n] [0]+ " "  + obj[n] [1];
@@ -136,6 +137,16 @@ function toggleControls(n){
        makeItemsLinks(localStorage.key(i), linksLi);
     }
   }
+     function getImage(catName , makeSubList){
+      var imageLi = document.createElement("li");
+          makeSubList.appendChild(imageLi);
+      var newImg = document.createElement("img");
+      var setSrc = newImg.setAttribute("src" , "images/" + catName + ".png");
+      imageLi.appendChild(newImg);
+      
+     }
+    
+    
     // edit and delete Link function
     function makeItemsLinks(key, linksLi){
       var editLink = document.createElement("a");
