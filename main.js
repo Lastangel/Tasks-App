@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded",function(){
     var theElement = document.getElementById(x)
     return theElement;
   
-  }
+  } // look at group function it seems to be the sorce of the problem
  function makeGroups(){
   var formTag = document.getElementsByTagName('form'),
   selectLi = $('select'),
@@ -105,7 +105,7 @@ function toggleControls(n){
       localStorage.setItem( id , JSON.stringify(item)); 
     alert("Tasks Saved");
  }
-  function showData (item){
+  function showData (){
     toggleControls("on");
  if(localStorage.length === 0){
   alert("No Data In Local Storage, Defualt data was added.");
@@ -126,7 +126,7 @@ function toggleControls(n){
       var obj = JSON.parse(value);
       var makeSubList = document.createElement("ul");
       makeli.appendChild(makeSubList);
-      getImage(areaGroup[1] , makeSubList); 
+     // getImage(obj.group[1] , makeSubList);  //can not get this to work JS wont reconize group
         for(var n in obj){
         var makeSubli = document.createElement("li");
         makeSubList.appendChild(makeSubli);
@@ -137,14 +137,14 @@ function toggleControls(n){
        makeItemsLinks(localStorage.key(i), linksLi);
     }
   }
-     function getImage(catName , makeSubList){
+   /*  function getImage(catName , makeSubList){
       var imageLi = document.createElement("li");
           makeSubList.appendChild(imageLi);
       var newImg = document.createElement("img");
       var setSrc = newImg.setAttribute("src" , "images/" + catName + ".png");
       imageLi.appendChild(newImg);
       
-     }
+     } */
     
     
     // edit and delete Link function
@@ -179,7 +179,7 @@ function toggleControls(n){
       
       toggleControls("off");
       
-      $("groups").value = item.groups[1];
+      $("groups").value = item.group[1]; 
       $("fname").value  = item.fname[1];
       $("lname").value  = item.lname[1];
       $("pword").value  = item.pword[1];
@@ -193,7 +193,7 @@ function toggleControls(n){
           radios[i].setAttribute("checked", "checked");
         }
       }
-         // make check boxes watch rest of video thats up
+        
     if(item.vaccum[1] == "Vacuum"){
       $('vaccum').setAttribute("checked", "checked");
     }else if(item.sweep[1] == "Sweep"){
@@ -312,7 +312,7 @@ function toggleControls(n){
      clearLink = $('clear'),
      radios,
      errMsg = $('errors'),
-    
+   
      
      
      
