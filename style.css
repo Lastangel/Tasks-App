@@ -1,0 +1,25 @@
+/* Clifton Abraham
+ * 1307
+ * 08/1/13 */
+h1 {
+margin: 60px;
+background: #0eb9cb;
+font-size: large;
+margin: 15px 30px 10px 5px;
+padding: 10px;
+width: 200px;
+
+}
+p {
+ font-style: italic;
+ font-weight: 200;
+ width: 300px;
+ line-height:1.2em;
+ text-align: left;
+ text-transform: capitalize;
+
+}
+
+body{
+    background-color: #bbebcb
+}
